@@ -1,25 +1,41 @@
-import logo from './logo.svg';
+import React, { Component, Fragment } from 'react';
 import './App.css';
+import ContactItem from './components/contact-item/contact-item'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component{
+  render(){
+    return (
+      <Fragment>
+        <div className="navbar">
+        <ul >
+          <li><a class="active" href="#home">Home</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        </div>
+
+      
+      <div class="container">
+        <div class="row">
+        <div class="col-sm-2 bord">
+            <input class="inp" type="text" placeholder="Name"/>
+            <input class="inp" type="text" placeholder="Phone"/>
+            <input class="inp" type="text" placeholder="Image URL"/>            
+            <a href="#" class="btn btn-primary inp">Add contact</a>
+          </div>
+          <div class="col-sm-9 bord">
+          <h2>First React App</h2>
+            <ul>
+              <li><ContactItem></ContactItem></li>
+              <li><ContactItem></ContactItem></li>
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+      </Fragment>
+    )
+  }
 }
 
 export default App;
