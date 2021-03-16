@@ -1,0 +1,12 @@
+.inp{
+    width: 100%;
+    margin-top: 20px;
+    height: 30px;
+}
+.bord{
+    border: rgb(136, 151, 156) solid 2px;
+    margin: 10px;
+}
+.formm{
+  height: 500px;
+}
