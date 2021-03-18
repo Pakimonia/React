@@ -35,13 +35,13 @@ class ContactItem extends Component{
         const image_URL = `https://randomuser.me/api/portraits/${gender}/${image}.jpg`;
       return (
           <Fragment>
-            <div class="card wid cardd col-sm-4">
-              <img src={image_URL}  class="card-img-top" />
-              <div class="card-body">
-                  <h5 class="card-title">{name}</h5>
-                  <p class="card-text">{number}</p>
-                  <button onClick={this.setRandomImage} class="btn btn-primary">Random image</button>                  
-                  <button onClick={this.setStarr} class="btn"><i class={star}></i></button>
+            <div className="card wid cardd col-sm-4">
+              <img src={image_URL}  className="card-img-top" />
+              <div className="card-body">
+                  <h5 className="card-title">{name}</h5>
+                  <p className="card-text">{number}</p>
+                  <button onClick={this.setRandomImage} className="btn btn-primary">Random image</button>                  
+                  <button onClick={this.setStarr} className="btn"><i className={star}></i></button>
               </div>
             </div>
           </Fragment>

@@ -45,24 +45,35 @@ state = {
   ]
 }
 
+addContact = (newContact) => {
+  var tempContacts = [];
+  if(this.state.contacts != null) {
+    tempContacts = this.state.contacts.slice();
+  }
+  tempContacts.push(newContact);
+  this.setState({
+    contacts: tempContacts
+  });
+}
+
   render(){
     return (
       <Fragment>
         <Navbar></Navbar>
 
       
-      <div class="container">
-        <div class="row">
-          <AddContact></AddContact>
-          <div class="col-sm-9 bord ">
-            <div class="row">
+      <div className="container">
+        <div className="row">
+          <AddContact addContact={this.addContact}></AddContact>
+          <div className="col-sm-9 bord ">
+            <div className="row">
               <ContactList contacts={this.state.contacts}></ContactList>
           </div>
           
         </div>
         </div>
-        <div class="col-sm-12 bord mr">
-          <div class="row">
+        <div className="col-sm-11 bord mr">
+          <div className="row">
             <NoteList notes={this.state.notes}></NoteList>
           </div>
         </div>

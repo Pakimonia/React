@@ -12,10 +12,10 @@ class NoteItem extends Component{
         const {title, text} = this.state;
       return (
           <Fragment>
-            <div class="card col-sm-3 marg">
-              <div class="card-body">
-                  <h5 class="card-title">{title}</h5>
-                  <p class="card-text">{text}</p>
+            <div className="card col-sm-3 marg">
+              <div className="card-body">
+                  <h5 className="card-title">{title}</h5>
+                  <p className="card-text">{text}</p>
               </div>
             </div>
           </Fragment>
