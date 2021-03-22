@@ -1,7 +1,17 @@
 .wid{
-    width: 250px;
+    width: 305px;
 }
 .cardd{
-  margin: 25px;
+  margin: 10px;
 }
-
+.smal{
+  font-size: 20px;
+  width: 10px;
+  margin: 1px;
+}
+.red{
+  color:red;
+}
+.orange{
+  color: rgba(0, 163, 0, 0.808);
+}

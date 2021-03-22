@@ -47,17 +47,24 @@ class AddContact extends Component{
       })
     }
   }
+  editContact = (editedContact) => {
+    
+  }
+
+
+
     render(){
       // console.log(this.state);
+      
       const { MessageError } = this.state;
       return (
           <Fragment>
             <div className="col-sm-2 bord formm">
                 <h4>Add new contact</h4>
                 <form onSubmit={this.submitForm}>
-                <input className="inp" onChange={this.hendlerChangeInput} name="name" type="text" placeholder="Name"/>
-                <input className="inp" onChange={this.hendlerChangeInput} name="number" type="text" placeholder="Phone"/>
-                <input className="inp" onChange={this.hendlerChangeInput} name="image" type="number" placeholder="Image number"/>
+                <input className="inp" onChange={this.hendlerChangeInput}id="name" name="name" type="text" placeholder="Name"/>
+                <input className="inp" onChange={this.hendlerChangeInput}id="number" name="number" type="text" placeholder="Phone"/>
+                <input className="inp" onChange={this.hendlerChangeInput}id="image" name="image" type="number" placeholder="Image number"/>
                 <select className="inp" onChange={this.hendlerChangeInput} name="gender">
                   <option value="women">Women</option>
                   <option value="men">Men</option>
