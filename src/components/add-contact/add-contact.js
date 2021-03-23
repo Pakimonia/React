@@ -59,7 +59,7 @@ class AddContact extends Component{
       const { MessageError } = this.state;
       return (
           <Fragment>
-            <div className="col-sm-2 bord formm">
+            <div className=" bord formm">
                 <h4>Add new contact</h4>
                 <form onSubmit={this.submitForm}>
                 <input className="inp" onChange={this.hendlerChangeInput}id="name" name="name" type="text" placeholder="Name"/>
@@ -70,7 +70,7 @@ class AddContact extends Component{
                   <option value="men">Men</option>
                 </select>       
                 <p className="text-danger">{MessageError}</p>     
-                <button type="submit" className="btn btn-primary inp" >Add contact</button>
+                <button type="submit" className="bt btn btn-primary inp" >Add contact</button>
             
 
                 </form>

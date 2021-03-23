@@ -15,7 +15,9 @@ const NoteList = ({ notes }) =>{
     }   
     return(
         <Fragment>
-            {notesTempleate}
+            <div className=" col-sm-11 bord mr   row">
+                {notesTempleate}
+            </div>
         </Fragment>
     )
   }

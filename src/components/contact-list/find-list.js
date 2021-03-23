@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import ContactItem from '../contact-item/contact-item';
 
-const ContactList = ({ contacts , removeContact, updateContact, editContact}) =>{
+const FindList = ({ contacts , removeContact, updateContact, editContact}) =>{
     var contactsTempleate;
     if(contacts !== null){
         contactsTempleate = contacts.map(item => {
-            if(!item.isHidden == true)
+            if(item.name == this.props.match.params.name || item.number == this.props.match.params.name)
             {
                 return(
                     <ContactItem removeContact={removeContact} updateContact={updateContact} editContact={editContact}
@@ -21,15 +21,16 @@ const ContactList = ({ contacts , removeContact, updateContact, editContact}) =>
                 ) 
             }
             
+            
         })
     }   
     return(
-        <Fragment>
-            <div className=" bord   row">
+        <Fragment>            
+            <div className=" bord row">
                 {contactsTempleate} {}
             </div>
         </Fragment>
     )
   }
 
-  export default ContactList;
+  export default FindList;

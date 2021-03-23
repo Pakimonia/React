@@ -25,8 +25,10 @@ const HiddenList = ({ contacts , removeContact, updateContact, editContact}) =>{
         })
     }   
     return(
-        <Fragment>
-            {contactsTempleate} {}
+        <Fragment>            
+            <div className=" bord mr content row">
+                {contactsTempleate} {}
+            </div>
         </Fragment>
     )
   }

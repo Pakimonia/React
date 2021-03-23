@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import './navbar.css';
+import {Link} from "react-router-dom";
 
 class Navbar extends Component{
     render(){
@@ -8,9 +9,10 @@ class Navbar extends Component{
             <div className="navbar">
           
                 <ul >
-                    <li><a className="active" href="#home">Home</a></li>
-                    <li><a href="#news">News</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><Link className="active" to="/">Home</Link></li>
+                    <li><Link to="/contact-list">Contact List </Link></li>
+                    <li><Link to="/add-contact">Add Contact</Link></li>
+                    <li><Link to="/favorite-list">Favorite List</Link></li>
                 </ul>
             </div>
           </Fragment>

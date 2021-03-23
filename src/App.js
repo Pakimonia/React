@@ -4,7 +4,18 @@ import Navbar from './components/navbar/navbar'
 import AddContact from './components/add-contact/add-contact'
 import ContactList from './components/contact-list/contact-list'
 import HiddenList from './components/contact-list/hidden-list'
+import FavoriteList from './components/contact-list/favorite-list'
+import FindList from './components/contact-list/find-list'
 import NoteList from './components/note-list/note-list'
+import {BrowserRouter as  Router, Route, Link, Switch } from 'react-router-dom';
+import Home from './components/home/home';
+import Page404 from './components/page404/page404';
+import Test from './components/test/test';
+
+
+
+
+
 class App extends Component{
 
 state = {
@@ -100,31 +111,66 @@ editContact = (contact) => {
   render(){
     return (
       <Fragment>
-        <Navbar></Navbar>
+        <Router>
+          <Navbar></Navbar>
 
       
       <div className="container">
         <div className="row">
-          <AddContact editContact={this.state.editContactt} addContact={this.addContact}></AddContact>
-          <div className="col-sm-9 bord ">
-            <div className="row">
+          <Switch>
+          <Route
+              path="/"
+              exact
+              render = {() => <Home></Home>}
+            ></Route>
+            <Route
+              path="/contact-list"
+              exact
+              render = {() => <Fragment> 
               <ContactList editContact={this.editContact} removeContact={this.removeContact} updateContact={this.updateContact} contacts={this.state.contacts}></ContactList>
-          </div>
-          
-        </div>
-        </div>
-        <div className="col-sm-11 bord mr">
-          <div className="row">
-            <NoteList notes={this.state.notes}></NoteList>
-          </div>
-        </div>
+              <button type="button" class="collapsible">Hidden Contacts</button>
+              <HiddenList editContact={this.editContact} removeContact={this.removeContact} updateContact={this.updateContact} contacts={this.state.contacts}></HiddenList>
+              </Fragment>}
+            ></Route>
+            <Route
+            path="/favorite-list"
+            exact
+            render = {() => <FavoriteList editContact={this.editContact} removeContact={this.removeContact} updateContact={this.updateContact} contacts={this.state.contacts}></FavoriteList>}
+            ></Route>
+            <Route
+              path="/add-contact"
+              exact
+              render = {() => <AddContact editContact={this.state.editContactt} addContact={this.addContact}></AddContact>}
+            ></Route>
+            <Route
+              path="/test/:id"
+              exact
+              component = {Test}
+            ></Route>
+            <Route
+              path="/find"
+              exact
+              render = {() => <FindList editContact={this.editContact} removeContact={this.removeContact} updateContact={this.updateContact} contacts={this.state.contacts}></FindList>}
+            ></Route>
+            <Route
+            path="*"
+            render={() => <Page404></Page404>}
+            ></Route>
+            
+
+
+
+
+
+          {/*<AddContact editContact={this.state.editContactt} addContact={this.addContact}></AddContact>*/}
+          {/*<ContactList editContact={this.editContact} removeContact={this.removeContact} updateContact={this.updateContact} contacts={this.state.contacts}></ContactList>*/}
+          {/*<NoteList notes={this.state.notes}></NoteList
           <button type="button" class="collapsible">Hidden Contacts</button>
-          <div className="col-sm-11 bord mr content">
-          <div className="row">
-          <HiddenList editContact={this.editContact} removeContact={this.removeContact} updateContact={this.updateContact} contacts={this.state.contacts}></HiddenList>
-          </div>
+          <HiddenList editContact={this.editContact} removeContact={this.removeContact} updateContact={this.updateContact} contacts={this.state.contacts}></HiddenList>*/}
+          </Switch>
         </div>
       </div>
+      </Router>
       </Fragment>
     )
   }
