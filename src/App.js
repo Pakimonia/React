@@ -72,23 +72,25 @@ addContact = (newContact) => {
   if (this.state.contacts != null) {
     tempContacts = this.state.contacts.slice();//coppy array
   }
-  newContact.id = tempContacts.length;
+  newContact.id = this.state.contacts.length +1;
   tempContacts.push(newContact);
   this.setState({
     contacts: tempContacts
   })
+  console.log(tempContacts.length);
 }
 updateContact = (contact) => {
   var tempContacts = [];
-  if (this.state.contacts != null) {
-    tempContacts = this.state.contacts.slice();
-    var foundIndex = tempContacts.findIndex(x => x.id == contact.id);
-    tempContacts[foundIndex] = contact;
-  }
+    if (this.state.contacts != null) {
+      tempContacts = this.state.contacts.slice();
+      var foundIndex = tempContacts.findIndex(x => x.id == contact.id);
 
-  this.setState({
-    contacts: tempContacts
-  })
+      tempContacts.splice(foundIndex, 1, contact);
+      this.setState({
+        contacts: tempContacts
+      })
+    }
+
 }
 removeContact = (contact) => {
   var tempContacts = [];
@@ -131,6 +133,11 @@ editContact = (contact) => {
               <button type="button" class="collapsible">Hidden Contacts</button>
               <HiddenList editContact={this.editContact} removeContact={this.removeContact} updateContact={this.updateContact} contacts={this.state.contacts}></HiddenList>
               </Fragment>}
+            ></Route>
+            <Route
+            path="/note-list"
+            exact
+            render = {() => <NoteList notes={this.state.notes}></NoteList>}
             ></Route>
             <Route
             path="/favorite-list"

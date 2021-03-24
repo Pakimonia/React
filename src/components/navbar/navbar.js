@@ -13,6 +13,7 @@ class Navbar extends Component{
                     <li><Link to="/contact-list">Contact List </Link></li>
                     <li><Link to="/add-contact">Add Contact</Link></li>
                     <li><Link to="/favorite-list">Favorite List</Link></li>
+                    <li><Link to="/note-list">Note List</Link></li>
                 </ul>
             </div>
           </Fragment>
