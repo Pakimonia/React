@@ -1,16 +1,15 @@
 import React, { Component, Fragment } from 'react';
-import './add-contact.css';
+import './add-group.css';
 
-class AddContact extends Component{
+class AddGroup extends Component{
   state = {
+    id: 0,
     name: "",
-    number: "",
     image: 0,
-    gender: "women",
     MessageError: ""
   }
   hendlerChangeInput = (e) =>{
-    var key = e.target.name;
+    var key = e.target.id;
     var value = e.target.value;
     this.setState({
       [key]: value
@@ -18,7 +17,7 @@ class AddContact extends Component{
 
   }
   isValid = () => {
-    if(this.state.name === "" || this.state.number === ""){
+    if(this.state.name === ""){
       return false;
     }
     else{
@@ -33,13 +32,11 @@ class AddContact extends Component{
       this.setState({
         MessageError:""
       })
-      var newContact = {
+      var newGroup = {
         name: this.state.name,
-        number: this.state.number,
-        image: this.state.image,
-        gender: this.state.gender
+        image: this.state.image
       };
-      this.props.addContact(newContact);
+      this.props.addGroup(newGroup);
     }
     else{
       this.setState({
@@ -47,10 +44,6 @@ class AddContact extends Component{
       })
     }
   }
-  editContact = (editedContact) => {
-    
-  }
-
 
 
     render(){
@@ -60,17 +53,12 @@ class AddContact extends Component{
       return (
           <Fragment>
             <div className=" bord formm">
-                <h4>Add new contact</h4>
+                <h4>Add new group</h4>
                 <form onSubmit={this.submitForm}>
                 <input className="inp" onChange={this.hendlerChangeInput}id="name" name="name" type="text" placeholder="Name"/>
-                <input className="inp" onChange={this.hendlerChangeInput}id="number" name="number" type="text" placeholder="Phone"/>
-                <input className="inp" onChange={this.hendlerChangeInput}id="image" name="image" type="number" placeholder="Image number"/>
-                <select className="inp" onChange={this.hendlerChangeInput} name="gender">
-                  <option value="women">Women</option>
-                  <option value="men">Men</option> 
-                </select>       
+                <input className="inp" onChange={this.hendlerChangeInput}id="image" name="image" type="text" placeholder="Image URL"/>     
                 <p className="text-danger">{MessageError}</p>     
-                <button type="submit" className="bt btn btn-primary inp" >Add contact</button>
+                <button type="submit" className="bt btn btn-primary inp" >Add group</button>
             
 
                 </form>
@@ -80,5 +68,5 @@ class AddContact extends Component{
     }
   }
   
-  export default AddContact;
+  export default AddGroup;
 

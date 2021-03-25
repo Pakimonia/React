@@ -9,7 +9,8 @@ class ContactItem extends Component{
         image: this.props.image,
         gender: this.props.gender,        
         isFavorite: this.props.isFavorite,
-        isHidden: this.props.isHidden
+        isHidden: this.props.isHidden,
+        groupId: this.props.groupId
         // isFaiv: this.props.isFaiv ,
         // star: "far fa-star"
     }
@@ -46,9 +47,10 @@ class ContactItem extends Component{
           name: this.state.name,
           number: this.state.number,
           image: this.state.image,
-          gender: this.props.gender,
+          gender: this.state.gender,
           isFavorite: !this.state.isFavorite,
-          isHidden: this.state.isHidden
+          isHidden: this.state.isHidden,
+          groupId: this.state.groupId
       } 
       this.props.updateContact(contact);
 
@@ -63,9 +65,10 @@ class ContactItem extends Component{
         name: this.state.name,
         number: this.state.number,
         image: this.state.image,
-        gender: this.props.gender,
+        gender: this.state.gender,
         isFavorite: this.state.isFavorite,
-        isHidden: !this.state.isHidden
+        isHidden: !this.state.isHidden,
+        groupId: this.state.groupId
     } 
     this.props.updateContact(contact);
 
@@ -80,9 +83,10 @@ class ContactItem extends Component{
       name: this.state.name,
       number: this.state.number,
       image: this.state.image,
-      gender: this.props.gender,
+      gender: this.state.gender,
       isFavorite: this.state.isFavorite,
-      isHidden: this.state.isHidden
+      isHidden: this.state.isHidden,
+      groupId: this.state.groupId
   }
   this.props.removeContact(contact);
 

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import {BrowserRouter as  Router, Route, Link, Switch } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/navbar/navbar'
 import AddContact from './components/add-contact/add-contact'
@@ -7,7 +8,9 @@ import HiddenList from './components/contact-list/hidden-list'
 import FavoriteList from './components/contact-list/favorite-list'
 import FindList from './components/contact-list/find-list'
 import NoteList from './components/note-list/note-list'
-import {BrowserRouter as  Router, Route, Link, Switch } from 'react-router-dom';
+import GroupList from './components/group-list/group-list'
+import AddGroup from './components/add-group/add-group'
+import AddInGroup from './components/add-group/add-in-group'
 import Home from './components/home/home';
 import Page404 from './components/page404/page404';
 import Test from './components/test/test';
@@ -28,7 +31,8 @@ state = {
       image: 0,
       gender: "men",
       isFavorite: true,
-      isHidden: true
+      isHidden: true,
+      groupId: 0
     },
     {
       id: 2,
@@ -37,7 +41,8 @@ state = {
       image: 0,
       gender: "women",
       isFavorite: false,
-      isHidden: false
+      isHidden: false,
+      groupId: 0
     },
     {
       id: 3,
@@ -46,7 +51,8 @@ state = {
       image: 67,
       gender: "men",
       isFavorite: true,
-      isHidden: false
+      isHidden: false,
+      groupId: 0
     }
   ],
   notes:[
@@ -63,7 +69,24 @@ state = {
       text: "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
     }
   ],
-  editContactt: ""
+  groups: [
+    {
+      id: 1,
+      name: "ПВ926",
+      image: "https://cdn.vox-cdn.com/thumbor/9qN-DmdwZE__GqwuoJIinjUXzmk=/0x0:960x646/1200x900/filters:focal(404x247:556x399)/cdn.vox-cdn.com/uploads/chorus_image/image/63084260/foodlife_2.0.jpg"
+    },
+    {
+      id: 2,
+      name: "34С18-4ПА",
+      image: "https://cdn.vox-cdn.com/thumbor/9qN-DmdwZE__GqwuoJIinjUXzmk=/0x0:960x646/1200x900/filters:focal(404x247:556x399)/cdn.vox-cdn.com/uploads/chorus_image/image/63084260/foodlife_2.0.jpg"
+    },
+    {
+      id: 3,
+      name: "ПВ927",
+      image: "https://cdn.vox-cdn.com/thumbor/9qN-DmdwZE__GqwuoJIinjUXzmk=/0x0:960x646/1200x900/filters:focal(404x247:556x399)/cdn.vox-cdn.com/uploads/chorus_image/image/63084260/foodlife_2.0.jpg"
+    }
+  ],
+  loading: false
 
 }
 
@@ -104,11 +127,57 @@ removeContact = (contact) => {
     });
   }
 }
-editContact = (contact) => {
+addGroup = (newGroup) => {
+  var tempGroups = [];
+  if (this.state.groups != null) {
+    tempGroups = this.state.groups.slice();//coppy array
+  }
+  newGroup.id = this.state.groups.length +1;
+  tempGroups.push(newGroup);
   this.setState({
-    editContactt: contact
+    groups: tempGroups
   })
+  console.log(tempGroups.length);
 }
+removeGroup = (group) => {
+  var tempGroups = [];
+  console.log('removing: ');
+  console.log(group);
+  if (this.state.groups != null) {
+    var foundIndex = this.state.groups.findIndex(x => x.id == group.id);
+    this.state.groups.splice(foundIndex, 1);
+    this.setState({
+      statusDelete: true
+    });
+  }
+
+
+}
+
+addInGroup = (e) => {
+  var contact = this.state.contacts.filter(function(item){
+    return item.name.toLowerCase().search(e.contacts.toLowerCase())!== -1;
+  })
+  var group = this.state.groups.filter(function(item){
+    return item.name.toLowerCase().search(e.groups.toLowerCase())!== -1;
+  })
+    contact.First().groupId = 11;
+  var tempContacts = [];
+    if (this.state.contacts != null) {
+      tempContacts = this.state.contacts.slice();
+      var foundIndex = tempContacts.findIndex(x => x.id == contact.id);
+
+      tempContacts.splice(foundIndex, 1, contact);
+      this.setState({
+        contacts: tempContacts
+      })
+    }
+    console.log(this.state.contacts);
+    console.log(contact);
+}
+
+
+
 
   render(){
     return (
@@ -129,9 +198,9 @@ editContact = (contact) => {
               path="/contact-list"
               exact
               render = {() => <Fragment> 
-              <ContactList editContact={this.editContact} removeContact={this.removeContact} updateContact={this.updateContact} contacts={this.state.contacts}></ContactList>
+              <ContactList  removeContact={this.removeContact} updateContact={this.updateContact} contacts={this.state.contacts}></ContactList>
               <button type="button" class="collapsible">Hidden Contacts</button>
-              <HiddenList editContact={this.editContact} removeContact={this.removeContact} updateContact={this.updateContact} contacts={this.state.contacts}></HiddenList>
+              <HiddenList  removeContact={this.removeContact} updateContact={this.updateContact} contacts={this.state.contacts}></HiddenList>
               </Fragment>}
             ></Route>
             <Route
@@ -142,12 +211,12 @@ editContact = (contact) => {
             <Route
             path="/favorite-list"
             exact
-            render = {() => <FavoriteList editContact={this.editContact} removeContact={this.removeContact} updateContact={this.updateContact} contacts={this.state.contacts}></FavoriteList>}
+            render = {() => <FavoriteList  removeContact={this.removeContact} updateContact={this.updateContact} contacts={this.state.contacts}></FavoriteList>}
             ></Route>
             <Route
               path="/add-contact"
               exact
-              render = {() => <AddContact editContact={this.state.editContactt} addContact={this.addContact}></AddContact>}
+              render = {() => <AddContact addContact={this.addContact}></AddContact>}
             ></Route>
             <Route
               path="/test/:id"
@@ -157,7 +226,22 @@ editContact = (contact) => {
             <Route
               path="/find"
               exact
-              render = {() => <FindList editContact={this.editContact} removeContact={this.removeContact} updateContact={this.updateContact} contacts={this.state.contacts}></FindList>}
+              render = {() => <FindList  removeContact={this.removeContact} updateContact={this.updateContact} contacts={this.state.contacts}></FindList>}
+            ></Route>
+            <Route
+              path="/add-group"
+              exact
+              render = {() => <AddGroup addGroup={this.addGroup}></AddGroup>}
+            ></Route>
+            <Route
+            path="/add-in-group"
+            exact
+            render = {() => <AddInGroup addInGroup={this.addInGroup}></AddInGroup>}
+            ></Route>
+            <Route
+              path="/group-list"
+              exact
+              render = {() => <GroupList removeGroup={this.removeGroup} groups={this.state.groups}></GroupList>}
             ></Route>
             <Route
             path="*"

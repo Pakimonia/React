@@ -14,6 +14,9 @@ class Navbar extends Component{
                     <li><Link to="/add-contact">Add Contact</Link></li>
                     <li><Link to="/favorite-list">Favorite List</Link></li>
                     <li><Link to="/note-list">Note List</Link></li>
+                    <li><Link to="/group-list">Group List </Link></li>
+                    <li><Link to="/add-group">Add Group</Link></li>
+                    <li><Link to="/add-in-group">Add Student In Group </Link></li>
                 </ul>
             </div>
           </Fragment>
